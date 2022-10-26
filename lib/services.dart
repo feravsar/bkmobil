@@ -1,15 +1,29 @@
 import 'package:bkmobil/users.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+//Future<List<Users>?>
 
 class Services {
   Future<List<Users>?> getUsers() async {
-    var client = http.Client();
+    final client = http.Client();
 
-    var uri = Uri.parse("https://6358de73ff3d7bddb9928f82.mockapi.io/users");
-    var response = await client.get(uri);
-    if (response.statusCode == 200) {
-      var json = response.body;
-      return usersFromJson(json);
+    final uri = Uri.parse("https://6358de73ff3d7bddb9928f82.mockapi.io/users");
+    final response = await client.get(uri);
+    try {
+      if (response.statusCode == 200) {
+        final result = usersFromJson(response.body);
+        debugPrint(result.first.avatar);
+        debugPrint(result.first.name);
+        debugPrint(result.first.surname);
+        debugPrint(result.first.email);
+        debugPrint(result.first.telephone);
+        return result;
+      } else {
+        debugPrint(response.statusCode.toString());
+      }
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 }
