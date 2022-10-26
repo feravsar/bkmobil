@@ -44,10 +44,9 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: ((context, index) {
                     return ListTile(
                         title: Text(
-                            users![index].name + " " + users![index].surname),
-                        subtitle: Text(users![index].email +
-                            "\n " +
-                            users![index].telephone),
+                            "${users![index].name} ${users![index].surname}"),
+                        subtitle: Text(
+                            "${users![index].email}\n ${users![index].telephone}"),
                         leading: CircleAvatar(
                             radius: 30,
                             backgroundColor: Colors.blueAccent,
