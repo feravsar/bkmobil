@@ -38,22 +38,29 @@ class _HomePageState extends State<HomePage> {
           title: const Text("BK MOBİL CASE PROJECT"),
         ),
         body: Visibility(
+          visible: isLoaded,
           child: Center(
               child: ListView.builder(
-                  itemCount: 50,
+                  itemCount: users?.length,
                   itemBuilder: ((context, index) {
                     return ListTile(
-                        title: Text("Title"),
-                        subtitle: Text("Subtitle"),
+                        title: Text(
+                            users![index].name + " " + users![index].surname),
+                        subtitle: Text(users![index].email +
+                            "\n " +
+                            users![index].telephone),
                         leading: CircleAvatar(
-                          backgroundColor: Colors.blueAccent,
-                        ),
+                            radius: 30,
+                            backgroundColor: Colors.blueAccent,
+                            backgroundImage: NetworkImage(
+                              users![index].avatar,
+                            )),
                         trailing: TextButton(
                           onPressed: (() {
                             int counter = 50;
                             debugPrint(counter.toString());
                           }),
-                          child: const Text("detay"),
+                          child: const Text("detay->"),
                         ));
                   }))),
         ));
