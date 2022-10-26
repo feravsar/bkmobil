@@ -13,11 +13,6 @@ class Services {
     try {
       if (response.statusCode == 200) {
         final result = usersFromJson(response.body);
-        debugPrint(result.first.avatar);
-        debugPrint(result.first.name);
-        debugPrint(result.first.surname);
-        debugPrint(result.first.email);
-        debugPrint(result.first.telephone);
         return result;
       } else {
         debugPrint(response.statusCode.toString());

@@ -1,7 +1,6 @@
+import 'package:bkmobil/secondPage.dart';
 import 'package:bkmobil/services.dart';
 import 'package:bkmobil/users.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -57,8 +56,21 @@ class _HomePageState extends State<HomePage> {
                             )),
                         trailing: TextButton(
                           onPressed: (() {
-                            int counter = 50;
-                            debugPrint(counter.toString());
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SecondPage(
+                                      id: users![index].id,
+                                      name: users![index].name,
+                                      surname: users![index].surname,
+                                      email: users![index].email,
+                                      telephone: users![index].telephone,
+                                      avatar: users![index].avatar)),
+                            );
+                            debugPrint(users![index].id);
+                            debugPrint(users![index].name);
+                            debugPrint(users![index].surname);
+                            debugPrint(users![index].avatar);
                           }),
                           child: const Text("detay->"),
                         ));
